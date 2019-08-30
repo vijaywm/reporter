@@ -18,13 +18,24 @@
   </head>
   <body>
     <div class="container">
+      <center><h1>Simply reports</h1></center>
       <div id="reporter-grid"></div>
     </div>
   </body>
 
   <script>
     var data = [
-      ["", "Ford", "Tesla", "Toyota", "Honda"],
+      [
+        "",
+        "Ford",
+        "Tesla",
+        "Toyota",
+        "Honda",
+        "Ford",
+        "Tesla",
+        "Toyota",
+        "Honda"
+      ],
       ["2017", 10, 11, 12, 13],
       ["2018", 20, 11, 14, 13],
       ["2019", 30, 15, 12, 13]
@@ -37,6 +48,7 @@
       colHeaders: true,
       filters: true,
       dropdownMenu: true,
+      stretchH: "all",
       licenseKey: "non-commercial-and-evaluation"
     });
   </script>
