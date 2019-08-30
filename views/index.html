@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
+    <script src="/js/handsontable.full.min.js"></script>
+    <link
+      href="/css/handsontable.full.min.css"
+      rel="stylesheet"
+      media="screen"
+    />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300"
@@ -12,18 +18,26 @@
   </head>
   <body>
     <div class="container">
-      <fieldset>
-        <form action="/" method="post">
-          <input
-            name="city"
-            type="text"
-            class="ghost-input"
-            placeholder="Enter a City"
-            required
-          />
-          <input type="submit" class="ghost-button" value="Get Weather" />
-        </form>
-      </fieldset>
+      <div id="reporter-grid"></div>
     </div>
   </body>
+
+  <script>
+    var data = [
+      ["", "Ford", "Tesla", "Toyota", "Honda"],
+      ["2017", 10, 11, 12, 13],
+      ["2018", 20, 11, 14, 13],
+      ["2019", 30, 15, 12, 13]
+    ];
+
+    var container = document.getElementById("reporter-grid");
+    var hot = new Handsontable(container, {
+      data: data,
+      rowHeaders: true,
+      colHeaders: true,
+      filters: true,
+      dropdownMenu: true,
+      licenseKey: "non-commercial-and-evaluation"
+    });
+  </script>
 </html>
