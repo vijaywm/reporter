@@ -3,12 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
-    <script src="/js/handsontable.full.min.js"></script>
-    <link
-      href="/css/handsontable.full.min.css"
-      rel="stylesheet"
-      media="screen"
-    />
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/ag-grid-community.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300"
@@ -18,38 +14,35 @@
   </head>
   <body>
     <div class="container">
+      {% include "navbar.html" %}
       <center><h1>Simply reports</h1></center>
-      <div id="reporter-grid"></div>
+      <div
+        id="report"
+        style="height: 600px;width:100%;"
+        class="ag-theme-balham"
+      ></div>
     </div>
   </body>
 
   <script>
-    var data = [
-      [
-        "",
-        "Ford",
-        "Tesla",
-        "Toyota",
-        "Honda",
-        "Ford",
-        "Tesla",
-        "Toyota",
-        "Honda"
-      ],
-      ["2017", 10, 11, 12, 13],
-      ["2018", 20, 11, 14, 13],
-      ["2019", 30, 15, 12, 13]
-    ];
+    let gridOptions;
 
-    var container = document.getElementById("reporter-grid");
-    var hot = new Handsontable(container, {
-      data: data,
-      rowHeaders: true,
-      colHeaders: true,
-      filters: true,
-      dropdownMenu: true,
-      stretchH: "all",
-      licenseKey: "non-commercial-and-evaluation"
-    });
+    function hashHandler() {
+      let hash = window.location.hash.substr(1);
+      axios.get(hash).then(function(res) {
+        console.log(res.data);
+        const { columns, data } = res.data;
+        gridOptions.api.setColumnDefs(columns);
+        gridOptions.api.setRowData(data || []);
+      });
+    }
+
+    window.addEventListener("hashchange", hashHandler, false);
+
+    gridOptions = {};
+    // lookup the container we want the Grid to use
+    var eGridDiv = document.querySelector("#report");
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, gridOptions);
   </script>
 </html>

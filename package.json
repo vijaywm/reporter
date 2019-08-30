@@ -4,7 +4,7 @@
   "description": "A no-fuss reporting app to pull data from db and display in a grid.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch views -e js,html server.js",
+    "start": "nodemon --watch views --watch server.js -e js,html server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,9 +23,10 @@
   },
   "homepage": "https://github.com/vijaywm/reporter#readme",
   "dependencies": {
+    "ag-grid-community": "^21.1.1",
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "handsontable": "^7.1.1",
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
